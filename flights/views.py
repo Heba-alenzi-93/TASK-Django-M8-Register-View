@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from .serializers import UserRegisterSerializer
 from rest_framework import generics
 
 from flights import serializers
@@ -41,3 +41,7 @@ class BookFlight(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user, flight_id=self.kwargs["flight_id"])
+
+
+class RigsterUserView(generics.CreateAPIView):
+    serializer_class = UserRegisterSerializer
